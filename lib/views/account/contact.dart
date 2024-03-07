@@ -228,7 +228,7 @@ class _ContactViewState extends State<ContactView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'ИП Краснов Александр Витальевич',
+                        'ООО «Риком»',
                         style: TextStyle(
                             color: Color(0xFF23262C),
                             fontSize: 12,
@@ -243,7 +243,17 @@ class _ContactViewState extends State<ContactView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            'г. Чебоксары, ул. К. Маркса, 47, оф.13',
+                            '428003, г Чебоксары, ул К. Маркса, д. 47, помещ. 7, каб. 11',
+                            style: TextStyle(
+                              color: Color(0xFF23262C),
+                              fontSize: 14,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                          const Text(
+                            'Директор  Кабанов Игорь Валерьевич',
                             style: TextStyle(
                               color: Color(0xFF23262C),
                               fontSize: 14,
@@ -258,7 +268,7 @@ class _ContactViewState extends State<ContactView> {
                             children: [
                               InkWell(
                                 onTap: () async {
-                                  Uri url = Uri(scheme: "tel", path: "+78352229292");
+                                  Uri url = Uri(scheme: "tel", path: "+78001010375");
 
                                   if (await canLaunchUrl(url)) {
                                     await launchUrl(url);
@@ -267,7 +277,7 @@ class _ContactViewState extends State<ContactView> {
                                   }
                                 },
                                 child: const Text(
-                                  '+7(8352)22-92-92',
+                                  '+7 (800) 101-03-75',
                                   style: TextStyle(
                                       color: Color(0xFF12B438),
                                       fontSize: 14,
@@ -280,13 +290,13 @@ class _ContactViewState extends State<ContactView> {
                                 onTap: () async {
                                   final Uri emailLaunchUri = Uri(
                                       scheme: 'mailto',
-                                      path: "hsnonline@ya.ru"
+                                      path: "zakaz@ohotika.ru"
                                   );
 
                                   if (await canLaunchUrl(emailLaunchUri)) {
                                     await launchUrl(emailLaunchUri);
                                   } else {
-                                    await Clipboard.setData(const ClipboardData(text: "hsnonline@ya.ru"));
+                                    await Clipboard.setData(const ClipboardData(text: "zakaz@ohotika.ru"));
 
                                     if (context.mounted) {
                                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -317,7 +327,7 @@ class _ContactViewState extends State<ContactView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'ИНН 212802321974',
+                            'ИНН 2130009953',
                             style: TextStyle(
                               color: Color(0xFF728A9D),
                               fontSize: 14,
@@ -328,7 +338,7 @@ class _ContactViewState extends State<ContactView> {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            'ОГРНИП 308213031000107',
+                            'КПП  213001001',
                             style: TextStyle(
                               color: Color(0xFF728A9D),
                               fontSize: 14,
@@ -339,7 +349,7 @@ class _ContactViewState extends State<ContactView> {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            'р/с 40802810629410000652',
+                            'ОГРН  1062130014836',
                             style: TextStyle(
                               color: Color(0xFF728A9D),
                               fontSize: 14,
@@ -350,7 +360,7 @@ class _ContactViewState extends State<ContactView> {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            'к/с 30101810200000000824',
+                            'ПАО "НБД-Банк", г.Нижний Новгород',
                             style: TextStyle(
                               color: Color(0xFF728A9D),
                               fontSize: 14,
@@ -361,7 +371,29 @@ class _ContactViewState extends State<ContactView> {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            'БИК 042202824',
+                            'Р/C  40702810211010031218',
+                            style: TextStyle(
+                              color: Color(0xFF728A9D),
+                              fontSize: 14,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            'К/C  30101810400000000705',
+                            style: TextStyle(
+                              color: Color(0xFF728A9D),
+                              fontSize: 14,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            'БИК  042202705',
                             style: TextStyle(
                               color: Color(0xFF728A9D),
                               fontSize: 14,

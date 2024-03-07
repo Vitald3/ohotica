@@ -526,7 +526,7 @@ class _ItemViewState extends State<ItemView> {
                                                 if (context.mounted) {
                                                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                                     behavior: SnackBarBehavior.floating,
-                                                    content: Text("Сейчас вы будете перенаправлены в сбербанк для оплаты товара"),
+                                                    content: Text("Сейчас вы будете перенаправлены в робокассу для оплаты товара"),
                                                   ));
                                                 }
 
@@ -682,7 +682,7 @@ class _ItemViewState extends State<ItemView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SvgPicture.asset("assets/sber.svg", semanticsLabel: 'close', width: 100, height: 20),
+                          SvgPicture.asset("assets/robo.svg", semanticsLabel: 'close', width: 100, height: 20),
                           InkWell(
                             onTap: () {
                               Navigator.of(context).pop();
@@ -1709,7 +1709,6 @@ class _ItemViewState extends State<ItemView> {
                                                 children: [
                                                   Container(
                                                     width: width + 20,
-                                                    height: 150,
                                                     clipBehavior: Clip.none,
                                                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                                                     decoration: const ShapeDecoration(
@@ -1741,7 +1740,6 @@ class _ItemViewState extends State<ItemView> {
                                                         ),
                                                         SizedBox(
                                                           width: width - 166,
-                                                          height: 150,
                                                           child: Column(
                                                             mainAxisSize: MainAxisSize.min,
                                                             mainAxisAlignment: MainAxisAlignment.center,

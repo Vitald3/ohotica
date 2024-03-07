@@ -1,5 +1,6 @@
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,6 +27,8 @@ class ProductView extends StatefulWidget {
 class _ProductViewState extends State<ProductView> {
   late final Box setting;
   var wishlists = <Wishlist>[];
+  var carouselController = CarouselController();
+  var activeImage = 0;
 
   @override
   void initState() {
@@ -55,7 +58,7 @@ class _ProductViewState extends State<ProductView> {
         },
         child: Container(
           width: width >= 492 ? (width/3)-5 : (width/2)-5,
-          height: 232,
+          height: 252,
           padding: const EdgeInsets.only(top: 5, left: 5, right: 5, bottom: 10),
           decoration: ShapeDecoration(
             color: Colors.white,
@@ -69,14 +72,75 @@ class _ProductViewState extends State<ProductView> {
               Stack(
                 alignment: Alignment.topRight,
                 children: [
-                  SizedBox(
-                    width: (width/2)-5,
-                    height: 135,
-                    child: CachedNetworkImage(
-                        imageUrl: widget.product.imageUrl!,
-                        errorWidget: (context, url, error) => Image.asset("assets/no-image.png"),
-                        fit: BoxFit.contain
-                    ),
+                  Column(
+                    children: [
+                      SizedBox(
+                          width: (width/2)-5,
+                          height: 135,
+                          child: widget.product.images!.length > 1 ? CarouselSlider(
+                              options: CarouselOptions(
+                                height: 135,
+                                disableCenter: false,
+                                enlargeCenterPage: true,
+                                initialPage: 0,
+                                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                viewportFraction: 1,
+                                padEnds: false,
+                                onPageChanged: (index, _) {
+                                  setState(() {
+                                    activeImage = index;
+                                  });
+                                },
+                              ),
+                              carouselController: carouselController,
+                              items: List.generate(widget.product.images!.length, (index) {
+                                return Container(
+                                  color: Colors.white,
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  child: CachedNetworkImage(
+                                      imageUrl: widget.product.images![index],
+                                      errorWidget: (context, url, error) => Image.asset("assets/no-image.png"),
+                                      fit: BoxFit.contain
+                                  ),
+                                );
+                              })
+                          ) : CachedNetworkImage(
+                              imageUrl: widget.product.images![0],
+                              errorWidget: (context, url, error) => Image.asset("assets/no-image.png"),
+                              fit: BoxFit.contain
+                          ),
+                      ),
+                      SizedBox(height: widget.product.images!.length > 1 ? 8 : 0),
+                      widget.product.images!.length > 1 ? Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: List<Widget>.generate(widget.product.images!.length, (int index) {
+                          return InkWell(
+                            onTap: () {
+                              setState(() {
+                                activeImage = index;
+                              });
+
+                              carouselController.jumpToPage(index);
+                            },
+                            child: Container(
+                              height: 10,
+                              width: 10,
+                              alignment: Alignment.center,
+                              child: Container(
+                                height: 6,
+                                width: 6,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: activeImage != index ? Colors.black : const Color(0xFF12B438),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                      ) : const SizedBox(height: 20),
+                      SizedBox(height: widget.product.images!.length > 1 ? 4 : 0),
+                    ],
                   ),
                   InkWell(
                     onTap: () {

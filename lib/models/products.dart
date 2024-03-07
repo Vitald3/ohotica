@@ -34,6 +34,7 @@ class Items {
   String? id;
   String? parentId;
   List<String>? parents;
+  List<String>? images;
   String? name;
   String? imageUrl;
   String? price;
@@ -46,6 +47,19 @@ class Items {
     id = json['id'];
     parentId = json['parent_id'];
     parents = json['parents'].cast<String>();
+    if (json['images'] != null) {
+      var images2 = <String>[];
+      var x = 0;
+
+      for (var i in json['images']) {
+        if (x < 12) images2.add(i);
+        x++;
+      }
+
+      images = images2;
+    } else {
+      images = [];
+    }
     name = json['name'];
     imageUrl = json['imageUrl'];
     price = json['price'];
@@ -58,6 +72,7 @@ class Items {
     data['id'] = id;
     data['parent_id'] = parentId;
     data['parents'] = parents;
+    data['images'] = images;
     data['name'] = name;
     data['imageUrl'] = imageUrl;
     data['price'] = price;

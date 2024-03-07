@@ -13,6 +13,8 @@ class ValuesNotifier extends ChangeNotifier {
   var cartCount = "";
   var wishlistCount = "";
   var timeCount = "5:00";
+  double btnUp = 0;
+  bool scroll = false;
 
   setBox() async {
     await Hive.initFlutter();
@@ -33,6 +35,16 @@ class ValuesNotifier extends ChangeNotifier {
       wishlistCount = wishlistCount == "0" ? "" : wishlistCount;
       notifyListeners();
     });
+  }
+
+  setScroll() {
+    scroll = true;
+    notifyListeners();
+  }
+
+  setBtnUp(double val) {
+    btnUp = val;
+    notifyListeners();
   }
 
   setCartCount(String val) {
