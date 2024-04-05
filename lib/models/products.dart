@@ -41,7 +41,7 @@ class Items {
   String? vendor;
   String? shopStatus;
 
-  Items({this.id, this.parentId, this.parents, this.name, this.imageUrl, this.price, this.vendor, this.shopStatus});
+  Items({this.id, this.parentId, this.parents, this.name, this.imageUrl, this.images, this.price, this.vendor, this.shopStatus});
 
   Items.fromJson(Map<String, dynamic> json) {
     id = json['id'];

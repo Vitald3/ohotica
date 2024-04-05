@@ -77,7 +77,7 @@ class _ProductViewState extends State<ProductView> {
                       SizedBox(
                           width: (width/2)-5,
                           height: 135,
-                          child: widget.product.images!.length > 1 ? CarouselSlider(
+                          child: widget.product.images != null && widget.product.images!.length > 1 ? CarouselSlider(
                               options: CarouselOptions(
                                 height: 135,
                                 disableCenter: false,
@@ -106,13 +106,13 @@ class _ProductViewState extends State<ProductView> {
                                 );
                               })
                           ) : CachedNetworkImage(
-                              imageUrl: widget.product.images![0],
+                              imageUrl: widget.product.images != null && widget.product.images!.isNotEmpty ? widget.product.images![0] : widget.product.imageUrl!,
                               errorWidget: (context, url, error) => Image.asset("assets/no-image.png"),
                               fit: BoxFit.contain
                           ),
                       ),
-                      SizedBox(height: widget.product.images!.length > 1 ? 8 : 0),
-                      widget.product.images!.length > 1 ? Wrap(
+                      SizedBox(height: widget.product.images != null && widget.product.images!.length > 1 ? 8 : 0),
+                      widget.product.images != null && widget.product.images!.length > 1 ? Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: List<Widget>.generate(widget.product.images!.length, (int index) {
                           return InkWell(
@@ -139,7 +139,7 @@ class _ProductViewState extends State<ProductView> {
                           );
                         }),
                       ) : const SizedBox(height: 20),
-                      SizedBox(height: widget.product.images!.length > 1 ? 4 : 0),
+                      SizedBox(height: widget.product.images != null && widget.product.images!.length > 1 ? 4 : 0),
                     ],
                   ),
                   InkWell(

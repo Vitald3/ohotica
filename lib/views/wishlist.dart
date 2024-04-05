@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:ohotika/models/wishlist.dart';
 import 'package:ohotika/views/products.dart';
 import 'package:provider/provider.dart';
+import '../models/categories.dart';
 import '../models/products.dart';
 import '../other/values_notifier.dart';
 import '../services/database.dart';
@@ -109,6 +112,7 @@ class _WishlistViewState extends State<WishlistView> {
                       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                       child: Wrap(spacing: 5, runSpacing: 5, children: List<Widget>.generate(wishlist.length, (index) {
                         final item = wishlist[index];
+
                         return ProductView(category: item.category!, product: Items(id: item.pid!, name: item.name, price: NumberFormat.currency(locale: 'ru', symbol: '', decimalDigits: 0).format(item.price), imageUrl: item.imageUrl), wishlistType: () async {
                           await DBProvider.db.getWishlists().then((value) {
                             wishlist = value;
